@@ -5,6 +5,8 @@ import styles from './weatherApp.module.css'
 
 export default function WeatherApp() {
   const [weather, setWeather] = useState(null);
+  const url = 'https://api.weatherapi.com/v1/current.json?aqi=no';
+  const key = '15b4ad0f4bd14334a7d180036230601';
 
   useEffect(()=>{
     loadInfo();
@@ -18,7 +20,7 @@ export default function WeatherApp() {
   async function loadInfo(city = "london") {
     try {
       const request = await fetch(
-        `${process.env.REACT_APP_URL} &key=${process.env.REACT_APP_KEY}&q=${city}`
+        `${url} &key=${key}&q=${city}`
       );
       const json = await request.json();
       setWeather(json)
